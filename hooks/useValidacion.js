@@ -8,14 +8,14 @@ const useValidacion = (stateInicial, validar, fn) => {
   useEffect(() => {
     // Validacion del formulario al hacer submit
     if (submitForm) {
-      const noErrores = (Object.keys(errores).length = 0);
+      const noErrores = Object.keys(errores).length === 0;
 
       if (noErrores) {
         fn(); // Funcion que se ejecuta en el componente
       }
       setSubmitForm(false);
     }
-  }, []);
+  }, [errores]);
 
   // El usuario escribe
   const handleChange = (e) => {
@@ -25,13 +25,25 @@ const useValidacion = (stateInicial, validar, fn) => {
   // El usuario hace submit
   const handleSubmit = (e) => {
     e.preventDefault();
-    // validar es un funcion que este hook recibe como parametro
+    // validar es una funcion que este hook recibe como parametro
     const erroresValidacion = validar(valores);
     setErrores(erroresValidacion);
     setSubmitForm(true);
   };
 
-  return { valores, errores, submitForm, handleSubmit, handleChange };
+  // Cuando se realiza el evento de blur
+  const handleBlur = () => {
+    const erroresValidacion = validar(valores);
+    setErrores(erroresValidacion);
+  };
+
+  return {
+    valores,
+    errores,
+    handleSubmit,
+    handleChange,
+    handleBlur,
+  };
 };
 
 export default useValidacion;
