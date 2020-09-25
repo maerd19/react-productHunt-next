@@ -4,9 +4,8 @@ import useAutenticacion from "./../hooks/useAutenticacion";
 
 function MyApp({ Component, pageProps }) {
   const usuario = useAutenticacion();
-  console.log(usuario);
   return (
-    <FirebaseContext.Provider value={{ firebase }}>
+    <FirebaseContext.Provider value={{ firebase, usuario }}>
       <Component {...pageProps} />
     </FirebaseContext.Provider>
   );

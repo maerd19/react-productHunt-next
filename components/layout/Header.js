@@ -7,6 +7,8 @@ import Buscar from "./../ui/Buscar";
 import Navegacion from "./Navegacion";
 import Boton from "./../ui/Boton";
 
+import { FirebaseContext } from "./../../firebase";
+
 const ContenedorHeader = styled.div`
   max-width: 1200px;
   width: 95%;
@@ -27,7 +29,7 @@ const Logo = styled.a`
 `;
 
 const Header = () => {
-  const usuario = false;
+  const { usuario, firebase } = useContext(FirebaseContext);
 
   return (
     <header
@@ -65,7 +67,7 @@ const Header = () => {
                   margin-right: 2rem;
                 `}
               >
-                Hola: Ivan
+                Hola: {usuario.displayName}
               </p>
               <Boton bgColor="true" onClick={() => firebase.cerrarSesion()}>
                 Cerrar Sesión
