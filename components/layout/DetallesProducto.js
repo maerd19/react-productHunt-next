@@ -2,6 +2,7 @@ import React from "react";
 import styled from "@emotion/styled";
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
 import { es } from "date-fns/locale";
+import Link from "next/Link";
 
 const Producto = styled.li`
   padding: 4rem;
@@ -100,7 +101,11 @@ const DetallesProducto = ({ producto }) => {
         </div>
 
         <div>
-          <Titulo>{nombre}</Titulo>
+          {/* El nombre de la url sera el nombre de la carpeta donde se hara el routing dinamico */}
+          {/* El nombre del id sera el nombre del archivo dentro de la carpeta productos */}
+          <Link href="/productos/[id]" as={`/productos/${id}`}>
+            <Titulo>{nombre}</Titulo>
+          </Link>
           <TextoDescripcion>{descripcion}</TextoDescripcion>
           <Comentarios>
             <div>
