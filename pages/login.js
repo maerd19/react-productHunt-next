@@ -35,7 +35,8 @@ export default function Login() {
 
   async function iniciarSesion() {
     try {
-      await firebase.login(email, password);
+      const usuario = await firebase.login(email, password);
+      console.log(usuario);
       Router.push("/");
     } catch (error) {
       console.log("Hubo un error al iniciar sesion", error.message);
