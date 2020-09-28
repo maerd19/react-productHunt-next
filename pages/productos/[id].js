@@ -43,7 +43,6 @@ const Producto = () => {
 
   // useEffect se usa para evitar fallos en la consulta en la BD's
   useEffect(() => {
-    console.log(id);
     if (id) {
       const obtenerProducto = async () => {
         const productoQuery = await firebase.db.collection("productos").doc(id);
@@ -67,6 +66,7 @@ const Producto = () => {
     url,
     urlImagen,
     votos,
+    creador,
   } = producto;
 
   return (
@@ -92,6 +92,9 @@ const Producto = () => {
                 Publicado hace:
                 {/* {formatDistanceToNow(new Date(creado), { locale: es })} */}
               </p>
+              <p>
+                Por: {creador.nombre} de {empresa}
+              </p>
 
               <img src={urlImagen} alt={nombre} />
               <p>{descripcion}</p>
@@ -112,12 +115,12 @@ const Producto = () => {
                 Comentarios
               </h2>
 
-              {comentarios.map((comentario) => (
+              {/* {comentarios.map((comentario) => (
                 <li>
                   <p>{comentario.nombre}</p>
                   <p>Escrito por: {comentario.usuarioNombre}</p>
                 </li>
-              ))}
+              ))} */}
             </div>
 
             <aside>

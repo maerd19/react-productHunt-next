@@ -50,6 +50,8 @@ export default function NuevoProducto() {
   // Context con las operaciones CRUD de Firebase
   const { usuario, firebase } = useContext(FirebaseContext);
 
+  console.log(usuario);
+
   // Funciones para carga de imagenes en Storage de Firebase
   const handleUploadStart = () => {
     setProgreso(0);
@@ -78,8 +80,6 @@ export default function NuevoProducto() {
   };
   // Fin funciones para carga de imagenes en Storage de Firebase
 
-  console.log(usuario);
-
   async function crearProducto() {
     // Si el usuario no esta autenticado, se lleva al login
     if (!usuario) router.push("/login");
@@ -94,6 +94,10 @@ export default function NuevoProducto() {
       votos: 0,
       comentarios: [],
       creado: Date.now(),
+      creador: {
+        id: usuario.uid,
+        nombre: usuario.displayName,
+      },
     };
 
     // Insertar en BD
