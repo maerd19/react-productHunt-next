@@ -78,6 +78,8 @@ export default function NuevoProducto() {
   };
   // Fin funciones para carga de imagenes en Storage de Firebase
 
+  console.log(usuario);
+
   async function crearProducto() {
     // Si el usuario no esta autenticado, se lleva al login
     if (!usuario) router.push("/login");
