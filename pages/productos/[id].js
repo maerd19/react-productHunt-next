@@ -39,7 +39,7 @@ const Producto = () => {
   } = router;
 
   // context de firebase
-  const { firebase } = useContext(FirebaseContext);
+  const { firebase, usuario } = useContext(FirebaseContext);
 
   // useEffect se usa para evitar fallos en la consulta en la BD's
   useEffect(() => {
@@ -92,20 +92,22 @@ const Producto = () => {
                 Publicado hace:
                 {/* {formatDistanceToNow(new Date(creado), { locale: es })} */}
               </p>
-              <p>
-                Por: {creador.nombre} de {empresa}
-              </p>
+              <p>{/* Por: {creador.nombre} de {empresa} */}</p>
 
               <img src={urlImagen} alt={nombre} />
               <p>{descripcion}</p>
 
-              <h2>Agrega tu comentario</h2>
-              <form>
-                <Campo>
-                  <input type="text" name="mensaje" />
-                </Campo>
-                <InputSubmit type="submit" value="Agregar Comentario" />
-              </form>
+              {usuario && (
+                <>
+                  <h2>Agrega tu comentario</h2>
+                  <form>
+                    <Campo>
+                      <input type="text" name="mensaje" />
+                    </Campo>
+                    <InputSubmit type="submit" value="Agregar Comentario" />
+                  </form>
+                </>
+              )}
 
               <h2
                 css={css`
@@ -141,7 +143,7 @@ const Producto = () => {
                   {votos} Votos
                 </p>
 
-                <Boton>Votar</Boton>
+                {usuario && <Boton>Votar</Boton>}
               </div>
             </aside>
           </ContenedorProducto>
