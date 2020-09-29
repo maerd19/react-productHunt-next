@@ -95,10 +95,13 @@ const Producto = () => {
       haVotado: nuevoHaVotado,
     });
 
-    setConsultarDB(true); // Hay un VOTO, por lo tanto consultar la BD's
-
     // Actualizar el state
-    setProducto({ ...producto, votos: nuevoTotal });
+    setProducto({
+      ...producto,
+      votos: nuevoTotal,
+    });
+
+    setConsultarDB(true); // Hay un VOTO, por lo tanto consultar la BD's
 
     // Borrar formulario
     setComentario({});
@@ -106,7 +109,10 @@ const Producto = () => {
 
   // Funciones para crear comentarios
   const comentarioChange = (e) => {
-    setComentario({ ...comentario, [e.target.name]: e.target.value });
+    setComentario({
+      ...comentario,
+      [e.target.name]: e.target.value,
+    });
   };
 
   // Identifica si el comentario es del creador del producto
@@ -128,10 +134,14 @@ const Producto = () => {
       comentarios: nuevosComentarios,
     });
 
-    setConsultarDB(true); // Hay un COMENTARIO, por lo tanto consultar la BD's
-
     // Actualizar el state
-    setProducto({ ...producto, comentarios: nuevosComentarios });
+    setProducto({
+      ...producto,
+      comentarios: nuevosComentarios,
+    });
+    setComentario({});
+
+    setConsultarDB(true); // Hay un COMENTARIO, por lo tanto consultar la BD's
   };
 
   // Funcion que revisa que el creador del producto sea el mismo que esta autenticado
@@ -164,17 +174,17 @@ const Producto = () => {
                 margin-top: 5rem;
               `}
             >
-              {nombre}
+              {nombre}{" "}
             </h1>
 
             <ContenedorProducto>
               <div>
                 <p>
                   Publicado hace:{" "}
-                  {formatDistanceToNow(new Date(creado), { locale: es })}
+                  {formatDistanceToNow(new Date(creado), { locale: es })}{" "}
                 </p>
                 <p>
-                  Por: {creador.nombre} de {empresa}
+                  Por: {creador.nombre} de {empresa}{" "}
                 </p>
 
                 <img src={urlImagen} alt={nombre} />
@@ -189,6 +199,7 @@ const Producto = () => {
                           type="text"
                           name="mensaje"
                           onChange={comentarioChange}
+                          value={comentario}
                         />
                       </Campo>
                       <InputSubmit type="submit" value="Agregar Comentario" />
@@ -205,7 +216,7 @@ const Producto = () => {
                 </h2>
 
                 {comentarios.length === 0 ? (
-                  "Aun no hay comentarios"
+                  "Aún no hay comentarios"
                 ) : (
                   <ul>
                     {comentarios.map((comentario, i) => (

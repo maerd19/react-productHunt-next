@@ -30,7 +30,11 @@ const Navegacion = () => {
       <Link href="/populares">
         <a>Populares</a>
       </Link>
-      {usuario && <Link href="/nuevo-producto">Nuevo Producto</Link>}
+      {usuario && (
+        <Link href="/nuevo-producto">
+          <a>Nuevo Producto</a>
+        </Link>
+      )}
     </Nav>
   );
 };

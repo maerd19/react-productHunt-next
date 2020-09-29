@@ -109,7 +109,7 @@ const DetallesProducto = ({ producto }) => {
           <TextoDescripcion>{descripcion}</TextoDescripcion>
           <Comentarios>
             <div>
-              <img src="/static/img/comentario.png" alt="" />
+              <img src="/static/img/comentario.png" />
               <p>{comentarios.length} Comentarios</p>
             </div>
           </Comentarios>
