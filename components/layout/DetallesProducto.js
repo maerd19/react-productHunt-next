@@ -2,7 +2,7 @@ import React from "react";
 import styled from "@emotion/styled";
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
 import { es } from "date-fns/locale";
-import Link from "next/Link";
+import Link from "next/link";
 
 const Producto = styled.li`
   padding: 4rem;
@@ -115,8 +115,8 @@ const DetallesProducto = ({ producto }) => {
           </Comentarios>
 
           <p>
-            Publicado hace{" "}
-            {formatDistanceToNow(new Date(creado), { locale: es })}
+            Publicado hace:{" "}
+            {formatDistanceToNow(new Date(creado), { locale: es })}{" "}
           </p>
         </div>
       </DescripcionProducto>
