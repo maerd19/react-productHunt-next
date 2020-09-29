@@ -199,7 +199,6 @@ const Producto = () => {
                           type="text"
                           name="mensaje"
                           onChange={comentarioChange}
-                          value={comentario}
                         />
                       </Campo>
                       <InputSubmit type="submit" value="Agregar Comentario" />
